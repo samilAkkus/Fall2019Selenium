@@ -20,6 +20,10 @@ public class BasicNavigation {
 
         driver.get("http://google.com"); //essential to open a website
 
+        driver.manage().window().maximize(); // to maximize windows
+
+//        driver.manage().window().fullscreen(); // to make it full screen
+
         Thread.sleep(2000); //wait 3 seconds,
         // it throws exception,
         // i added "throws" keyword in main method
@@ -39,8 +43,50 @@ public class BasicNavigation {
             System.out.println("TEST FAILED!!");
         }
 
-        driver.close(); // to close the browser
+        driver.navigate().to("http://amazon.com");
+        Thread.sleep(2000);
+
+        if(driver.getTitle().toLowerCase().contains("amazon")){
+            System.out.println("TEST PASSED!");
+        }else{
+            System.out.println("TEST FAILED!");
+        }
+        //comeback to google
+        driver.navigate().back();
+        //checking if page title is equals to Google
+        //.getTitle() - returns page title
+
+        Thread.sleep(2000);
+        verifyEquals(driver.getTitle(), "Google");
+        //must be at the end
+
+        driver.navigate().forward(); // again going to amazon, move forward
+
+        System.out.println("Title: "+driver.getTitle());
+
+        System.out.println("URL: "+driver.getCurrentUrl());
+
+        Thread.sleep(2000);
+
+        driver.navigate().refresh(); // to reload the page
 
 
+        Thread.sleep(2000);
+
+        driver.close();//to close browser
+        //browser cannot close itself
+
+
+    }
+
+    public static void verifyEquals(String arg1,String arg2){
+
+        if(arg1.equals(arg2)){
+
+            System.out.println("TEST PASSED!");
+        }else {
+
+            System.out.println("TEST FAILED!!");
+        }
     }
 }
