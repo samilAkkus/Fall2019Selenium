@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverFactory {
 
@@ -23,9 +24,21 @@ public class DriverFactory {
             return new ChromeDriver();
         }else {
 
-            WebDriverManager.firefoxdriver().setup();
+            if(browserName.equalsIgnoreCase("firefox")){
 
-            return new FirefoxDriver();
+                WebDriverManager.firefoxdriver().setup();
+
+                return new FirefoxDriver();
+            }else {
+
+                if(browserName.equalsIgnoreCase("safari")){
+
+                    return new SafariDriver();
+                }else {
+
+                    return null;
+                }
+            }
         }
     }
 }
