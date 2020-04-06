@@ -102,6 +102,8 @@ public class CalendarEventsPageTests {
         WebElement titleElement = driver.findElement(titleBy);
         Assert.assertTrue(titleElement.getAttribute("value").isEmpty());
         //date time syntax = https://www.journaldev.com/17899/java-simpledateformat-java-date-format
+        //boxes do not have getText method
+        //we get it by calling getAttribute("value")
 
         //Default start date should be current date
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
